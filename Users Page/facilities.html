@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Facilities | EV Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span>EV Connect<small>Charge. Refuel. Go Further.</small></span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="stations.html">EV Stations</a>
+        <a href="facilities.html" class="active">Facilities</a>
+        <a href="booking-history.php">My Bookings</a>
+        <a href="logout.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
+    </nav>
+</header>
+
+<section class="page-banner">
+    <p class="eyebrow">SERVICES FOR YOUR JOURNEY</p>
+    <h1>Vehicle Facilities</h1>
+    <p>Find useful vehicle services in one place.</p>
+</section>
+
+<main class="section">
+
+    <div class="category-filters">
+        <a href="#" class="selected" data-type="all">All</a>
+        <a href="#" data-type="petrol">Petrol Stations</a>
+        <a href="#" data-type="carwash">Car Wash</a>
+        <a href="#" data-type="airpump">Air Pumps</a>
+        <a href="#" data-type="parking">Parking</a>
+    </div>
+
+    <form class="search-form station-search" id="searchForm">
+        <input type="text" id="searchInput"
+            placeholder="Search facility name or location...">
+        <button type="submit" class="btn">Search</button>
+        <a href="facilities.html" class="reset-link">Reset</a>
+    </form>
+
+    <div class="listing-heading">
+        <h2 id="listingTitle">All Facilities</h2>
+        <p id="resultCount">5 facilities found</p>
+    </div>
+
+    <div class="facility-grid" id="facilityGrid">
+
+        <a href="petrol.html"
+           class="facility-card"
+           data-type="petrol"
+           data-search="petrol station bandar seri begawan refuelling">
+            <div class="facility-icon orange">⛽</div>
+            <h3>Petrol Station</h3>
+            <p>Petrol and vehicle refuelling services.</p>
+            <p>📍 Beribi</p>
+			<p>📍 Mentiri</p>
+            <span>View Details →</span>
+        </a>
+
+        <a href="carwash.html"
+           class="facility-card"
+           data-type="carwash"
+           data-search="car wash centre kiulap vehicle cleaning">
+            <div class="facility-icon blue">🚗</div>
+            <h3>Car Wash Centre</h3>
+            <p>Vehicle washing and cleaning services.</p>
+            <p>📍 Cuci Xpress Tungku Link</p>
+			<p>📍 Cuci Xpress Salar</P>
+            <span>View Details →</span>
+        </a>
+
+        <a href="air-pumps.html"
+           class="facility-card"
+           data-type="airpump"
+           data-search="tyre air pump jerudong tyre pressure">
+            <div class="facility-icon purple">◉</div>
+            <h3>Tyre Air Pump</h3>
+            <p>Check and refill your tyre pressure.</p>
+            <p>📍 Beribi</p>
+			<p>📍 Tyremart Mentiri</p>
+            <span>View Details →</span>
+        </a>
+
+        <a href="parking.html"
+           class="facility-card"
+           data-type="parking"
+           data-search="public parking area bandar seri begawan vehicle parking">
+            <div class="facility-icon teal">P</div>
+            <h3>Public Parking Area</h3>
+            <p>Convenient vehicle parking facilities.</p>
+            <p>📍 Bandar Seri Begawan</p>
+            <span>View Details →</span>
+        </a>
+
+    </div>
+
+    <div class="empty-state" id="emptyState" hidden>
+        <h3>No facilities found</h3>
+        <p>Try another category or search term.</p>
+        <button type="button" class="btn" id="showAllButton">
+            View All Facilities
+        </button>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-logo">⚡ EV Connect</div>
+    <p>Charge. Refuel. Go Further.</p>
+    <p class="copyright">© 2026 EV Connect. All rights reserved.</p>
+</footer>
+
+<script>
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".facility-card");
+const filters = document.querySelectorAll(".category-filters a");
+const resultCount = document.getElementById("resultCount");
+const listingTitle = document.getElementById("listingTitle");
+const emptyState = document.getElementById("emptyState");
+const showAllButton = document.getElementById("showAllButton");
+
+let selectedType = "all";
+
+const categoryNames = {
+    all: "All Facilities",
+    ev: "EV Charging",
+    petrol: "Petrol Stations",
+    carwash: "Car Wash",
+    airpump: "Air Pumps",
+    parking: "Parking"
+};
+
+function filterFacilities() {
+    const search = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const matchesType =
+            selectedType === "all" ||
+            card.dataset.type === selectedType;
+
+        const matchesSearch =
+            card.dataset.search.includes(search);
+
+        const show = matchesType && matchesSearch;
+
+        card.hidden = !show;
+
+        if (show) {
+            visibleCount++;
+        }
+    });
+
+    listingTitle.textContent = categoryNames[selectedType];
+    resultCount.textContent =
+        visibleCount + (visibleCount === 1
+            ? " facility found"
+            : " facilities found");
+
+    emptyState.hidden = visibleCount !== 0;
+}
+
+filters.forEach(filter => {
+    filter.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        selectedType = this.dataset.type;
+
+        filters.forEach(item => item.classList.remove("selected"));
+        this.classList.add("selected");
+
+        filterFacilities();
+    });
+});
+
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    filterFacilities();
+});
+
+searchInput.addEventListener("input", filterFacilities);
+
+showAllButton.addEventListener("click", function() {
+    selectedType = "all";
+    searchInput.value = "";
+
+    filters.forEach(item => {
+        item.classList.toggle("selected", item.dataset.type === "all");
+    });
+
+    filterFacilities();
+});
+
+</script>
+
+</body>
+</html>

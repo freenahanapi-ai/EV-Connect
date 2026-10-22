@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EV Connect | Charging & Vehicle Facilities</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<header class="navbar">
+    <a href="index.html" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span>EV Connect<small>Charge. Refuel. Go Further.</small></span>
+    </a>
+
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="stations.html">EV Stations</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="booking-history.php">My Bookings</a>
+        <a href="logout.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
+    </nav>
+</header>
+
+
+<!-- Homepage Banner -->
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">YOUR JOURNEY, MADE EASIER</p>
+
+        <h1>EV Charging Stations &amp; Vehicle Facilities</h1>
+
+        <p>
+            Discover charging stations, petrol stations,
+            car washes, air pumps and parking facilities
+            in one convenient place.
+        </p>
+
+        <a href="stations.html" class="btn">
+            Explore Stations &rarr;
+        </a>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="search-section">
+    <form action="stations.html" method="GET" class="search-form">
+        <input
+            type="text"
+            name="search"
+            placeholder="Search station name or location..."
+            aria-label="Search station name or location"
+        >
+
+        <button type="submit" class="btn">Search</button>
+    </form>
+</section>
+
+<!-- Featured Stations -->
+<section class="section stations-section">
+
+    <div class="section-heading">
+        <p class="eyebrow">CHARGE WITH CONFIDENCE</p>
+        <h2>Featured EV Stations</h2>
+        <p>Explore charging stations and their availability.</p>
+    </div>
+
+    <div class="station-grid">
+
+ <article class="station-card" data-search="ev charging station 01 bandar seri begawan type 2">
+            <div class="station-image">
+                <span class="status available">Available</span>
+                <span class="station-symbol">⚡</span>
+            </div>
+            <div class="station-info">
+                <h3>EV Charging Station 01</h3>
+                <p>📍 Royal Brunei Polo and Riding Club, Jerudong</p>
+                <p>🔌 Charger type: Type 2</p>
+                <p>Total chargers: 4</p>
+                <p>Available: 2 of 4</p>
+                <a href="station-details.html?id=1">View Details →</a>
+            </div>
+        </article>
+
+        <article class="station-card" data-search="ev charging station 02 gadong ccs2">
+            <div class="station-image image-two">
+                <span class="status busy">Fully Occupied</span>
+                <span class="station-symbol">⚡</span>
+            </div>
+            <div class="station-info">
+                <h3>EV Charging Station 02</h3>
+                <p>📍 Tapak Perindustrian Beribi</p>
+                <p>🔌 Charger type: CCS2</p>
+                <p>Total chargers: 6</p>
+                <p>Available: 0 of 6</p>
+                <a href="station-details.html?id=2">View Details →</a>
+            </div>
+        </article>
+
+        <article class="station-card" data-search="ev charging station 03 kiulap type 2">
+            <div class="station-image image-three">
+                <span class="status available">Available</span>
+                <span class="station-symbol">⚡</span>
+            </div>
+            <div class="station-info">
+                <h3>EV Charging Station 03</h3>
+                <p>📍 Jalan Utama Berakas</p>
+                <p>🔌 Charger type: Type 2</p>
+                <p>Total chargers: 3</p>
+                <p>Available: 1 of 3</p>
+                <a href="station-details.html?id=3">View Details →</a>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="view-all">
+        <a href="stations.html" class="btn">View All Stations &rarr;</a>
+    </div>
+	
+<!-- Facilities Section -->
+<section class="section">
+    <div class="section-heading">
+        <p class="eyebrow">WHAT YOU NEED, ALL IN ONE PLACE</p>
+        <h2>Explore Our Facilities</h2>
+        <p>Find the services you need for your journey.</p>
+    </div>
+
+    <div class="facility-grid">
+
+        <a href="petrol.html?type=petrol" class="facility-card">
+            <div class="facility-icon orange">⛽</div>
+            <h3>Petrol Stations</h3>
+            <p>Find petrol stations for refuelling your vehicle.</p>
+            <span>View Facilities &rarr;</span>
+        </a>
+
+        <a href="carwash.html?type=carwash" class="facility-card">
+            <div class="facility-icon blue">🚗</div>
+            <h3>Car Wash</h3>
+            <p>Discover car wash services for your vehicle.</p>
+            <span>View Facilities &rarr;</span>
+        </a>
+
+        <a href="air-pumps.html?type=airpump" class="facility-card">
+            <div class="facility-icon purple">◉</div>
+            <h3>Air Pumps</h3>
+            <p>Find locations to check and refill tyre pressure.</p>
+            <span>View Facilities &rarr;</span>
+        </a>
+
+        <a href="parking.html?type=parking" class="facility-card">
+            <div class="facility-icon teal">P</div>
+            <h3>Parking</h3>
+            <p>Find convenient parking facilities.</p>
+            <span>View Facilities &rarr;</span>
+        </a>
+
+    </div>
+</section>
+
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <a href="index.html" class="footer-logo">⚡ EV Connect</a>
+
+        <p>Charge. Refuel. Go Further.</p>
+        <p class="copyright">
+            &copy; 2026 EV Connect. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

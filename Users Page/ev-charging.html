@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Details | EV Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">⚡ EV Connect</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="stations.html">EV Stations</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<main class="section">
+    <a href="facilities.html" class="back-link">← Back to Facilities</a>
+
+    <section id="stationDetails" class="details-card">
+        <div class="details-banner">
+            <span class="station-symbol">⚡</span>
+        </div>
+
+        <div class="details-content">
+            <p class="eyebrow">EV CHARGING STATION DETAILS</p>
+            <h1 id="stationName">EV Charging Station 01</h1>
+            <p class="details-description" id="stationDescription">
+                A charging point for electric vehicle users.
+            </p>
+
+            <div class="detail-row">
+                <span>Location</span>
+                <strong id="stationLocation">Bandar Seri Begawan</strong>
+            </div>
+            <div class="detail-row">
+                <span>Connector Type</span>
+                <strong id="stationType">Type 2</strong>
+            </div>
+            <div class="detail-row">
+                <span>Total Charging Points</span>
+                <strong id="stationTotal">4</strong>
+            </div>
+            <div class="detail-row">
+                <span>Available Charging Points</span>
+                <strong id="stationAvailable">2</strong>
+            </div>
+            <div class="detail-row">
+                <span>Status</span>
+                <strong id="stationStatus">Available</strong>
+            </div>
+            <div class="detail-row">
+                <span>Operating Hours</span>
+                <strong id="stationHours">24 hours</strong>
+            </div>
+
+            <p class="notice">
+                Please confirm connector compatibility and availability
+                before travelling.
+            </p>
+        </div>
+    </section>
+
+    <!-- Booking form -->
+    <section class="booking-card" id="bookingSection">
+        <div class="booking-header">
+            <h2>Book an EV Charging Slot</h2>
+            <p>Enter your details to request a charging slot.</p>
+        </div>
+
+        <form id="bookingForm" class="booking-form">
+            <div class="booking-field">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" required>
+            </div>
+
+            <div class="booking-field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="booking-field">
+                <label for="vehicleNumber">Vehicle Registration Number</label>
+                <input type="text" id="vehicleNumber" required>
+            </div>
+
+            <div class="booking-field">
+                <label for="bookingDate">Booking Date</label>
+                <input type="date" id="bookingDate" required>
+            </div>
+
+            <div class="booking-field">
+                <label for="bookingTime">Booking Time</label>
+                <input type="time" id="bookingTime" required>
+            </div>
+
+            <div class="booking-field">
+                <label for="duration">Charging Duration</label>
+                <select id="duration" required>
+                    <option value="">Select duration</option>
+                    <option value="30 minutes">30 minutes</option>
+                    <option value="1 hour">1 hour</option>
+                    <option value="2 hours">2 hours</option>
+                    <option value="3 hours">3 hours</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Confirm Booking</button>
+            <p id="bookingMessage" class="booking-message" hidden></p>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <a href="index.html" class="footer-logo">⚡ EV Connect</a>
+        <p>Charge. Refuel. Go Further.</p>
+        <p class="copyright">© 2026 EV Connect. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+const stations = {
+    1: {
+        name: "EV Charging Station 01",
+        location: "Bandar Seri Begawan",
+        type: "Type 2",
+        total: 4,
+        available: 2,
+        hours: "24 hours",
+        description: "A charging point for electric vehicle users."
+    },
+    2: {
+        name: "EV Charging Station 02",
+        location: "Gadong",
+        type: "CCS2",
+        total: 6,
+        available: 0,
+        hours: "24 hours",
+        description: "A charging station with multiple charging points."
+    },
+    3: {
+        name: "EV Charging Station 03",
+        location: "Kiulap",
+        type: "Type 2",
+        total: 3,
+        available: 1,
+        hours: "24 hours",
+        description: "A convenient charging point for EV drivers."
+    },
+    4: {
+        name: "EV Charging Station 04",
+        location: "Jerudong",
+        type: "CCS2",
+        total: 5,
+        available: 5,
+        hours: "24 hours",
+        description: "A charging station with available charging points."
+    }
+};
+
+const params = new URLSearchParams(window.location.search);
+const station = stations[params.get("id") || "1"];
+
+if (!station) {
+    document.getElementById("stationDetails").innerHTML = `
+        <div class="details-content">
+            <h1>Station Not Found</h1>
+            <p>Please choose a station from the listing.</p>
+            <a href="stations.html" class="btn">View EV Stations</a>
+        </div>
+    `;
+    document.getElementById("bookingSection").hidden = true;
+} else {
+    document.getElementById("stationName").textContent = station.name;
+    document.getElementById("stationDescription").textContent = station.description;
+    document.getElementById("stationLocation").textContent = station.location;
+    document.getElementById("stationType").textContent = station.type;
+    document.getElementById("stationTotal").textContent = station.total;
+    document.getElementById("stationAvailable").textContent = station.available;
+    document.getElementById("stationStatus").textContent =
+        station.available > 0 ? "Available" : "Fully Occupied";
+    document.getElementById("stationHours").textContent = station.hours;
+
+    if (station.available === 0) {
+        document.getElementById("bookingForm").hidden = true;
+        const message = document.getElementById("bookingMessage");
+        message.hidden = false;
+        message.textContent =
+            "This station is fully occupied. Please select another station.";
+    }
+}
+
+const dateInput = document.getElementById("bookingDate");
+const now = new Date();
+dateInput.min = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0")
+].join("-");
+
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!station || station.available === 0) return;
+
+    if (dateInput.value < dateInput.min) {
+        const message = document.getElementById("bookingMessage");
+        message.hidden = false;
+        message.textContent = "Please select today or a future date.";
+        return;
+    }
+
+    const message = document.getElementById("bookingMessage");
+    message.hidden = false;
+    message.textContent =
+        "Demo booking submitted for " + station.name +
+        " on " + dateInput.value +
+        ". This booking has not been saved to a database.";
+
+    console.log({
+        station: station.name,
+        name: document.getElementById("fullName").value,
+        email: document.getElementById("email").value,
+        vehicle: document.getElementById("vehicleNumber").value,
+        date: dateInput.value,
+        time: document.getElementById("bookingTime").value,
+        duration: document.getElementById("duration").value
+    });
+});
+</script>
+
+</body>
+</html>

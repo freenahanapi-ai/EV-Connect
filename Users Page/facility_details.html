@@ -1,0 +1,147 @@
+
+<?php
+$facilities = [
+    1 => [
+        "name" => "EV Charging Point",
+        "type" => "EV Charging",
+        "location" => "Gadong",
+        "description" => "A facility for charging electric vehicles.",
+        "hours" => "24 hours",
+        "services" => "Electric vehicle charging"
+    ],
+    2 => [
+        "name" => "Petrol Station",
+        "type" => "Petrol Station",
+        "location" => "Bandar Seri Begawan",
+        "description" => "A facility for refuelling petrol vehicles.",
+        "hours" => "6:00 AM - 12:00 AM",
+        "services" => "Petrol refuelling"
+    ],
+    3 => [
+        "name" => "Car Wash Centre",
+        "type" => "Car Wash",
+        "location" => "Kiulap",
+        "description" => "A facility offering vehicle washing services.",
+        "hours" => "8:00 AM - 8:00 PM",
+        "services" => "Vehicle washing and cleaning"
+    ],
+    4 => [
+        "name" => "Tyre Air Pump",
+        "type" => "Air Pump",
+        "location" => "Jerudong",
+        "description" => "A facility to help drivers check and refill tyre pressure.",
+        "hours" => "24 hours",
+        "services" => "Tyre air pressure"
+    ],
+    5 => [
+        "name" => "Public Parking Area",
+        "type" => "Parking",
+        "location" => "Bandar Seri Begawan",
+        "description" => "A convenient area for parking vehicles.",
+        "hours" => "6:00 AM - 10:00 PM",
+        "services" => "Vehicle parking"
+    ]
+];
+
+$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+$facility = ($id !== false && $id !== null)
+    ? ($facilities[$id] ?? null)
+    : null;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facility Details | EV Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span>EV Connect<small>Charge. Refuel. Go Further.</small></span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="stations.html">EV Stations</a>
+        <a href="facilities.html" class="active">Facilities</a>
+        <a href="booking-history.php">My Bookings</a>
+        <a href="logout.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
+    </nav>
+</header>
+
+<main class="section">
+
+    <a href="facilities.html" class="back-link">&larr; Back to Facilities</a>
+
+    <?php if ($facility !== null): ?>
+
+        <section class="details-card">
+            <div class="details-banner">
+                <span class="station-symbol">🚗</span>
+            </div>
+
+            <div class="details-content">
+                <p class="eyebrow">VEHICLE FACILITY DETAILS</p>
+
+                <h1><?= htmlspecialchars($facility["name"]) ?></h1>
+
+                <p class="details-description">
+                    <?= htmlspecialchars($facility["description"]) ?>
+                </p>
+
+                <div class="detail-row">
+                    <span>Facility type</span>
+                    <strong><?= htmlspecialchars($facility["type"]) ?></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Location</span>
+                    <strong><?= htmlspecialchars($facility["location"]) ?></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Services</span>
+                    <strong><?= htmlspecialchars($facility["services"]) ?></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Operating hours</span>
+                    <strong><?= htmlspecialchars($facility["hours"]) ?></strong>
+                </div>
+
+                <p class="notice">
+                    Facility information shown here is sample data for the
+                    website prototype.
+                </p>
+
+                <a href="facilities.html" class="btn">Back to Facilities</a>
+            </div>
+        </section>
+
+    <?php else: ?>
+
+        <div class="empty-state">
+            <h1>Facility Not Found</h1>
+            <p>The selected facility does not exist in the sample data.</p>
+            <a href="facilities.html" class="btn">View All Facilities</a>
+        </div>
+
+    <?php endif; ?>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <a href="index.html" class="footer-logo">⚡ EV Connect</a>
+        <p>Charge. Refuel. Go Further.</p>
+        <p class="copyright">&copy; 2026 EV Connect. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

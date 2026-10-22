@@ -1,0 +1,639 @@
+
+/* ===== GENERAL ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #183b32;
+    background: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    flex:1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+
+/* ===== NAVIGATION ===== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 18px 6%;
+    background: #ffffff;
+    border-bottom: 1px solid #e6eee9;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #176044;
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.logo small {
+    display: block;
+    margin-top: 5px;
+    color: #718078;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.logo-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e4f2e8;
+}
+
+.navbar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.navbar nav a {
+    color: #45574e;
+    font-size: 14px;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+    color: #148253;
+    font-weight: bold;
+}
+
+
+/* ===== BUTTONS ===== */
+
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 7px;
+    padding: 13px 22px;
+    background: #15975b;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background: #107346;
+}
+
+
+/* ===== HERO BANNER ===== */
+
+.hero {
+    display: flex;
+    align-items: center;
+    min-height: 350px;
+    padding: 60px 7%;
+    color: white;
+    background:
+        linear-gradient(90deg,
+        rgba(12, 56, 44, 0.98),
+        rgba(12, 56, 44, 0.85) 48%,
+        rgba(12, 56, 44, 0.25));
+}
+
+.hero-content {
+    max-width: 610px;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: #15975b;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero .eyebrow {
+    color: #78e2a8;
+}
+
+.hero h1 {
+    margin-bottom: 18px;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.2;
+}
+
+.hero-content > p:not(.eyebrow) {
+    max-width: 540px;
+    margin-bottom: 25px;
+    color: #edf6f0;
+}
+
+
+/* ===== SEARCH BAR ===== */
+
+.search-section {
+    padding: 25px 7%;
+    background: #f3f8f4;
+}
+
+.search-form {
+    display: flex;
+    gap: 12px;
+    max-width: 750px;
+    margin: auto;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 16px;
+    border: 1px solid #d7e4da;
+    border-radius: 7px;
+    outline-color: #15975b;
+}
+
+
+/* ===== SECTION LAYOUT ===== */
+
+.section {
+    padding: 60px 6%;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+
+.section-heading > p:last-child {
+    color: #718078;
+}
+
+
+/* ===== FACILITIES ===== */
+
+.facility-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.facility-card {
+    padding: 24px 17px;
+    text-align: center;
+    border: 1px solid #e1ebe4;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(25, 65, 43, 0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.facility-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(25, 65, 43, 0.1);
+}
+
+.facility-icon {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.green { background: #148253; }
+.orange { background: #e9a328; }
+.blue { background: #368bce; }
+.purple { background: #8060cf; }
+.teal { background: #128f88; }
+
+.facility-card h3 {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.facility-card p {
+    min-height: 68px;
+    margin-bottom: 15px;
+    color: #718078;
+    font-size: 13px;
+}
+
+.facility-card span {
+    color: #148253;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* ===== STATION CARDS ===== */
+
+.stations-section {
+    background: #f5f8f5;
+}
+
+.station-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.station-card {
+    overflow: hidden;
+    border: 1px solid #e1ebe4;
+    border-radius: 12px;
+    background: white;
+}
+
+.station-image {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 155px;
+    background: linear-gradient(135deg, #d6e8db, #8bbba0);
+}
+
+.image-two {
+    background: linear-gradient(135deg, #dce5e8, #91aab1);
+}
+
+.image-three {
+    background: linear-gradient(135deg, #d7e8df, #83ad96);
+}
+
+.station-symbol {
+    font-size: 55px;
+}
+
+.status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.available {
+    background: #15975b;
+}
+
+.busy {
+    background: #d89b14;
+}
+
+.station-info {
+    padding: 20px;
+}
+
+.station-info h3 {
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.station-info p {
+    margin-bottom: 7px;
+    color: #718078;
+    font-size: 13px;
+}
+
+.station-info a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #148253;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.view-all {
+    margin-top: 25px;
+    text-align: right;
+}
+
+
+/* ===== FOOTER ===== */
+
+.footer {
+    padding: 35px 6%;
+    text-align: center;
+    color: white;
+    background: #123c30;
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.footer p {
+    margin-top: 8px;
+    color: #c9ded2;
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.footer-links a:hover {
+    color: #78e2a8;
+}
+
+.footer .copyright {
+    margin-top: 25px;
+    font-size: 12px;
+}
+
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 1000px) {
+    .facility-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .station-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        flex-direction: column;
+        padding: 20px 5%;
+    }
+
+    .navbar nav {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero {
+        min-height: 320px;
+        padding: 45px 6%;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .section {
+        padding: 40px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 25px;
+    }
+
+    .facility-grid,
+    .station-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .facility-card p {
+        min-height: auto;
+    }
+
+    .view-all {
+        text-align: center;
+    }
+}
+
+
+/* ===== INNER PAGE BANNER ===== */
+
+.page-banner {
+    padding: 55px 6%;
+    text-align: center;
+    background: #e7f2ea;
+}
+
+.page-banner h1 {
+    margin-bottom: 10px;
+    font-size: clamp(30px, 4vw, 42px);
+}
+
+.page-banner > p:last-child {
+    color: #65776b;
+}
+
+
+/* ===== LISTING PAGE ===== */
+
+.station-search {
+    max-width: 850px;
+    margin: 0 auto 35px;
+}
+
+.reset-link {
+    align-self: center;
+    color: #205c43;
+    font-weight: bold;
+}
+
+.listing-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.listing-heading p {
+    color: #718078;
+    font-size: 14px;
+}
+
+.station-grid {
+    align-items: stretch;
+}
+
+.empty-state {
+    padding: 50px 20px;
+    text-align: center;
+    border: 1px solid #e1ebe4;
+    border-radius: 12px;
+    background: #f7f9f7;
+}
+
+.empty-state h1,
+.empty-state h3 {
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    margin-bottom: 20px;
+    color: #718078;
+}
+
+
+/* ===== FACILITY CATEGORY FILTERS ===== */
+
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.category-filters a {
+    padding: 9px 16px;
+    border: 1px solid #d7e4da;
+    border-radius: 25px;
+    background: white;
+    color: #365548;
+    font-size: 13px;
+}
+
+.category-filters a:hover,
+.category-filters a.selected {
+    border-color: #205c43;
+    background: #205c43;
+    color: white;
+}
+
+
+/* ===== DETAILS PAGES ===== */
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #205c43;
+    font-weight: bold;
+}
+
+.details-card {
+    max-width: 850px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid #e1ebe4;
+    border-radius: 14px;
+    background: white;
+    box-shadow: 0 5px 20px rgba(25, 65, 43, 0.05);
+}
+
+.details-banner {
+    display: grid;
+    place-items: center;
+    min-height: 190px;
+    background: linear-gradient(135deg, #e1f0e5, #9cc9ad);
+}
+
+.details-banner .station-symbol {
+    font-size: 65px;
+}
+
+.details-content {
+    padding: 30px;
+}
+
+.details-content h1 {
+    margin-bottom: 12px;
+    font-size: 30px;
+}
+
+.details-description {
+    margin-bottom: 25px;
+    color: #718078;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #e8eee9;
+}
+
+.detail-row > span:first-child {
+    color: #718078;
+}
+
+.detail-row strong {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.detail-row .status {
+    position: static;
+    flex-shrink: 0;
+}
+
+.notice {
+    margin: 22px 0;
+    padding: 12px;
+    border-radius: 7px;
+    background: #f3f8f4;
+    color: #65776b;
+    font-size: 12px;
+}
+
+
+/* ===== SMALL SCREENS ===== */
+
+@media (max-width: 650px) {
+    .page-banner {
+        padding: 40px 5%;
+    }
+
+    .listing-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .details-content {
+        padding: 22px;
+    }
+
+    .details-content h1 {
+        font-size: 25px;
+    }
+
+    .detail-row {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .detail-row strong {
+        max-width: 60%;
+    }
+}

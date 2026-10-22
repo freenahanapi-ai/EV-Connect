@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Stations | EV Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span>EV Connect<small>Charge. Refuel. Go Further.</small></span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="stations.html" class="active">EV Stations</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="booking-history.php">My Bookings</a>
+        <a href="logout.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
+    </nav>
+</header>
+
+<section class="page-banner">
+    <p class="eyebrow">FIND YOUR NEXT CHARGE</p>
+    <h1>EV Charging Stations</h1>
+    <p>Explore stations and check charger availability.</p>
+</section>
+
+<main class="section">
+
+    <form class="search-form station-search" id="searchForm">
+        <input type="text" id="searchInput"
+            placeholder="Search by station, location or charger type...">
+        <button type="submit" class="btn">Search</button>
+        <a href="stations.html" class="reset-link">Reset</a>
+    </form>
+
+    <div class="listing-heading">
+        <h2>Available Stations</h2>
+        <p id="resultCount">4 station(s) found</p>
+    </div>
+
+    <div class="station-grid" id="stationGrid">
+
+        <article class="station-card" data-search="ev charging station 01 bandar seri begawan type 2">
+            <div class="station-image">
+                <span class="status available">Available</span>
+                <span class="station-symbol">⚡</span>
+            </div>
+            <div class="station-info">
+                <h3>EV Charging Station 01</h3>
+                <p>📍 Royal Brunei Polo and Riding Club, Jerudong</p>
+                <p>🔌 Charger type: Type 2</p>
+                <p>Total chargers: 4</p>
+                <p>Available: 2 of 4</p>
+                <a href="station-details.php?id=1">View Details →</a>
+            </div>
+        </article>
+
+        <article class="station-card" data-search="ev charging station 02 gadong ccs2">
+            <div class="station-image image-two">
+                <span class="status busy">Fully Occupied</span>
+                <span class="station-symbol">⚡</span>
+            </div>
+            <div class="station-info">
+                <h3>EV Charging Station 02</h3>
+                <p>📍 Tapak Perindustrian Beribi</p>
+                <p>🔌 Charger type: CCS2</p>
+                <p>Total chargers: 6</p>
+                <p>Available: 0 of 6</p>
+                <a href="station-details.php?id=2">View Details →</a>
+            </div>
+        </article>
+
+        <article class="station-card" data-search="ev charging station 03 kiulap type 2">
+            <div class="station-image image-three">
+                <span class="status available">Available</span>
+                <span class="station-symbol">⚡</span>
+            </div>
+            <div class="station-info">
+                <h3>EV Charging Station 03</h3>
+                <p>📍 Jalan Utama Berakas</p>
+                <p>🔌 Charger type: Type 2</p>
+                <p>Total chargers: 3</p>
+                <p>Available: 1 of 3</p>
+                <a href="station-details.php?id=3">View Details →</a>
+            </div>
+        </article>
+
+        <article class="station-card" data-search="ev charging station 04 jerudong ccs2">
+            <div class="station-image">
+                <span class="status available">Available</span>
+                <span class="station-symbol">⚡</span>
+            </div>
+            <div class="station-info">
+                <h3>EV Charging Station 04</h3>
+                <p>📍 Bandar Seri Begawan</p>
+                <p>🔌 Charger type: CCS2</p>
+                <p>Total chargers: 5</p>
+                <p>Available: 5 of 5</p>
+                <a href="station-details.php?id=4">View Details →</a>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="empty-state" id="emptyState" hidden>
+        <h3>No stations found</h3>
+        <p>Try searching for another station or location.</p>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-logo">⚡ EV Connect</div>
+    <p>Charge. Refuel. Go Further.</p>
+    <p class="copyright">© 2026 EV Connect. All rights reserved.</p>
+</footer>
+
+<script>
+const form = document.getElementById("searchForm");
+const input = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".station-card");
+const count = document.getElementById("resultCount");
+const emptyState = document.getElementById("emptyState");
+
+function filterStations() {
+    const search = input.value.trim().toLowerCase();
+    let visible = 0;
+
+    cards.forEach(card => {
+        const matches = card.dataset.search.includes(search);
+        card.hidden = !matches;
+
+        if (matches) visible++;
+    });
+
+    count.textContent = visible + " station(s) found";
+    emptyState.hidden = visible !== 0;
+}
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    filterStations();
+});
+
+input.addEventListener("input", filterStations);
+</script>
+
+</body>
+</html>
